@@ -6,7 +6,8 @@ const { MANY, ONE } = Cardinalities;
 export const schema: Schema = {
   user: {
     createdTaskIds: { type: 'task', cardinality: MANY, reciprocal: 'creatorId' },
-    assignedTaskIds: { type: 'task', cardinality: MANY, reciprocal: 'assigneeId' }
+    assignedTaskIds: { type: 'task', cardinality: MANY, reciprocal: 'assigneeId' },
+    commentIds: { type: 'task', cardinality: MANY, reciprocal: 'creatorId' },
   },
   task: {
     creatorId: { type: 'user', cardinality: ONE, reciprocal: 'createdTaskIds' },
@@ -22,6 +23,7 @@ export const schema: Schema = {
     taskIds: { type: 'task', cardinality: MANY, reciprocal: 'tagIds' }
   },
   comment: {
+    creatorId: { type: 'user', cardinality: ONE, reciprocal: 'commentIds' },
     taskId: { type: 'task', cardinality: ONE, reciprocal: 'rootCommentIds', },
     parentCommentId: { type: 'comment', cardinality: ONE, reciprocal: 'childCommentIds' },
     childCommentIds: { type: 'comment', cardinality: MANY, reciprocal: 'parentCommentId' }

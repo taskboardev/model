@@ -29,6 +29,7 @@ export interface User {
   username: string,
   createdTaskIds?: string[],
   assignedTaskIds?: string[],
+  commentIds?: string[],
 }
 
 export interface Task {
@@ -57,6 +58,7 @@ export interface Tag {
 export interface Comment {
   id: string,
   value: string,
+  creatorId: string,
   taskId?: string,
   parentCommentId?: string,
   childCommentIds?: string[]
